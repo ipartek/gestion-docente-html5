@@ -10,7 +10,9 @@ jQuery(document).ready(function($) {
     $("#contactForm").on("submit",validarFormularioContacto);
     $("#tablaAlumnos tbody").on("click","td:last-child button:last-child",function(){
         //alert("has pulsado el boton de borrado");
-        
+        var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
+
+        alert(codigo);
     });
     $("#tablaAlumnos tbody").on("click","td:last-child button:first-child",function(){
         //alert("has pulsado el boton de actualizar");
