@@ -47,10 +47,12 @@ jQuery(document).ready(function($) {
             var codigo = $(this).val();
             //Llamar al REST
             $(this).parents("tr").remove();
-            //actualizar el nº de alumnos
+
 
         });
-
+        //actualizar el nº de alumnos
+        $("tbody tr").length;
+        
     }
     function validarFormularioContacto(){
         //recoger los valores de la vista
