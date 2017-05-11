@@ -9,10 +9,11 @@ jQuery(document).ready(function($) {
     // Code that uses jQuery's $ can follow here.
     $("#contactForm").on("submit",validarFormularioContacto);
     $("#tablaAlumnos tbody").on("click","td:last-child button:last-child",function(){
-        alert("has pulsado el boton de borrado");
+        //alert("has pulsado el boton de borrado");
+        
     });
     $("#tablaAlumnos tbody").on("click","td:last-child button:first-child",function(){
-        alert("has pulsado el boton de actualizar");
+        //alert("has pulsado el boton de actualizar");
     });
     $("#borrartodos").click(function (event) {
         //attr ---> cambios de atributos
