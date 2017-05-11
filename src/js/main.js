@@ -8,14 +8,22 @@ $.noConflict();
 jQuery(document).ready(function($) {
     // Code that uses jQuery's $ can follow here.
     $("#contactForm").on("submit",validarFormularioContacto);
+    $("#listadoAlumnos div a:last-child").click(borrarVarios);
+
     $("#tablaAlumnos tbody").on("click","td:last-child button:last-child",function(){
         //alert("has pulsado el boton de borrado");
         var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
-
-        alert(codigo);
+        //Llamar al REST para Borrar
+        //
+       // alert(codigo);
+        //borra la tupla del boton que se ha seleccionado
+        $(this).parents("tr").remove();
     });
     $("#tablaAlumnos tbody").on("click","td:last-child button:first-child",function(){
         //alert("has pulsado el boton de actualizar");
+        var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
+        //Llamar al REST para el GetById
+        var nombre = $(this).parents("tr").find("td:nth-child(2)").text();
     });
     $("#borrartodos").click(function (event) {
         //attr ---> cambios de atributos
@@ -33,7 +41,17 @@ jQuery(document).ready(function($) {
 
 
     });
+    function borrarVarios() {
+        //recoger los checksboxes marcados
+        $("#tablaAlumnos tbody input:checked").each(function () {
+            var codigo = $(this).val();
+            //Llamar al REST
+            $(this).parents("tr").remove();
+            //actualizar el nº de alumnos
 
+        });
+
+    }
     function validarFormularioContacto(){
         //recoger los valores de la vista
         var pdni = $("#dni").val();
