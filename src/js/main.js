@@ -117,6 +117,34 @@ jQuery(document).ready(function($) {
             $("#listadoAlumnos").text("No se han encontrado alumnos")
         }
     }
+    const urlAlumnos = "http://localhost:8080/gestiondocente/api/alumnos.json"
+    ajax({"url":urlAlumnos,"method":"get"})
+        .then(function (data) {
+            //aqui tengo los datos cargados (data)
+            console.log(data);
+        })
+        .then(function () {
+            //poner mensaje los datos se han cargado correctamente
+        })
+        .catch(function () {
+            console.log("hay un error");
+            //gestión de errores del primer metodo.
+        });
+    function ajax(opciones) {
+        return new Promise(function (resolve, reject) {
+            $.ajax(opciones).done(resolve).fail(reject);
+        });
+    }
+    function cargarAlumnos () {
+        $.ajax({"url":urlAlumnos,"method":"get"})
+            .done(function(data){
+                //
+
+            });
+
+        //cargar de carga completa
+    }
+
 });
 function validarNombre(nombre){
     const pattern = new RegExp(/[a-zA-Z]{3,}/);
