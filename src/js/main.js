@@ -1,9 +1,15 @@
+import {$,jQuery} from 'jquery';
+// export for others scripts to use
+window.$ = $;
+window.jQuery = jQuery;
+//var $ = require("./vendor/jquery-3.2.1.min.js");
 //codigo, nombre, apellidos, dni, email, telefono
 var alumnos = [
     {"codigo":1,"nombre":"sergio","apellidos":"aparicio vegas","dni":"44974398z","email":"xxxxx@xxx.xx","telefono":"+3494"},
     {"codigo":2,"nombre":"maite","apellidos":"monasterio herrero","dni":"16071559x","email":"xxxxx@xxx.xx","telefono":"+3494"},
     {"codigo":3,"nombre":"jorge","apellidos":"manso rodriguez","dni":"16412750e","email":"xxxxx@xxx.xx","telefono":"+3494"}
     ];
+
 $.noConflict();
 jQuery(document).ready(function($) {
     // Code that uses jQuery's $ can follow here.
@@ -52,7 +58,7 @@ jQuery(document).ready(function($) {
         });
         //actualizar el nº de alumnos
         $("tbody tr").length;
-        
+
     }
     function validarFormularioContacto(){
         //recoger los valores de la vista

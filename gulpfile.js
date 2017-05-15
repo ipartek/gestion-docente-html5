@@ -22,14 +22,16 @@ gulp.task('minify-css',['clean-css'], function() {
         .pipe(gulp.dest('dist/css'));
 });
 gulp.task("compile-js",['clean-js'], function () {
-    return gulp.src(['src/js/vendor/jquery-3.2.1.min.js','src/js/main.js'])
+    return gulp.src([/*'src/js/vendor/jquery-3.2.1.min.js',*/'src/js/main.js'])
         .pipe(concat('all-min.js', {newLine: ';'}))
         .pipe(babel())
+        /*
         .pipe(babili({
             mangle: {
                 keepClassNames: true
             }
         }))
+        */
         .pipe(gulp.dest("dist/js"));
 });
 gulp.task("compile",['minify-css',"compile-js"]);

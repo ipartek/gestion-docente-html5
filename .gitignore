@@ -121,7 +121,6 @@ IntelliLang.xml
 ignore.xml
 diff.xml
 web-browsers.xml
-/.babelrc
 /npm-debug.log
 /.htaccess
-/gulpfile.js
+/node_modules

@@ -1,6 +1,7 @@
 {
   "name": "gestion-docente-html5",
   "version": "1.0.0",
+  "readme": "README.md",
   "description": "Son las vistas del proyecto gestion-docente de Java con tecnologias HTML5, CSS3 y JavaScript 6.",
   "main": "gulpfile.js",
   "directories": {
@@ -15,9 +16,13 @@
     "gulp-babel": "^6.1.2",
     "gulp-babili": "^0.0.2",
     "gulp-util": "^3.0.8",
+    "jquery": "^3.2.1",
     "through2": "^2.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-preset-env": "^1.4.0",
+    "gulp": "^3.9.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
