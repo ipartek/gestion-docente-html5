@@ -1,8 +1,3 @@
-import {$,jQuery} from 'jquery';
-// export for others scripts to use
-window.$ = $;
-window.jQuery = jQuery;
-//var $ = require("./vendor/jquery-3.2.1.min.js");
 //codigo, nombre, apellidos, dni, email, telefono
 var alumnos = [
     {"codigo":1,"nombre":"sergio","apellidos":"aparicio vegas","dni":"44974398z","email":"xxxxx@xxx.xx","telefono":"+3494"},
@@ -143,10 +138,10 @@ function validarDni(dni) {
     var valido =false;
     const pattern = new RegExp(/\d{8}[A-Za-z]{1}/);
     if(pattern.test(dni)){
-        numero = parseInt(dni.substr(0,dni.length-1),10);
-        letr = dni.substr(dni.length-1,1);
+        var numero = parseInt(dni.substr(0,dni.length-1),10);
+        var letr = dni.substr(dni.length-1,1);
         numero = numero % 23;
-        letra='TRWAGMYFPDXBNJZSQVHLCKET';
+        var letra='TRWAGMYFPDXBNJZSQVHLCKET';
         letra=letra.substring(numero,numero+1);
         if (letra==letr.toUpperCase()) {
             valido = true;
