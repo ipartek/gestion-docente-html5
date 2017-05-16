@@ -132,8 +132,8 @@ $(document).ready(function($) {
         .then(function () {
             //poner mensaje los datos se han cargado correctamente
         })
-        .catch(function () {
-            console.log("hay un error");
+        .catch(function (jqXHR, textStatus, errorThrown ) {
+            console.log(jqXHR);
             //gestión de errores del primer metodo.
         });
     function ajax(opciones) {
@@ -141,15 +141,7 @@ $(document).ready(function($) {
             $.ajax(opciones).done(resolve).fail(reject);
         });
     }
-    function cargarAlumnos () {
-        $.ajax({"url":urlAlumnos,"method":"get"})
-            .done(function(data){
-                //
 
-            });
-
-        //cargar de carga completa
-    }
 
 });
 function validarNombre(nombre){
