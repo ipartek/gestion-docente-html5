@@ -1,18 +1,25 @@
 /**
- * Created by va00 on 10/05/2017.
+ * Created by Urko on 10/05/2017.
  */
-var gulp = require("gulp");
-var babel = require("gulp-babel");
-var babili = require("gulp-babili");
+const gulp = require('gulp');
+const babel = require('gulp-babel');
 var concat = require('gulp-concat');
 var cleanCSS = require('gulp-clean-css');
 var clean = require('gulp-clean');
-//var babel = require('babelify');
-
-/*
 var browserify = require('browserify');
-var watchify = require('watchify');
-*/
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var uglify = require('gulp-uglify');
+
+gulp.task('compile-js',['clean-js'],function() {
+    return browserify('./src/js/main.js')
+        .bundle()
+        .pipe(source('all-min.js'))
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(babel({presets: ['env']}))
+        .pipe(gulp.dest('./dist/js'));
+});
 gulp.task('clean-js', function () {
     return gulp.src('dist/js', {read: false})
         .pipe(clean());
@@ -26,16 +33,5 @@ gulp.task('minify-css',['clean-css'], function() {
         .pipe(cleanCSS())
         .pipe(concat('styles-min.css'))
         .pipe(gulp.dest('dist/css'));
-});
-gulp.task("compile-js",['clean-js'], function () {
-    return gulp.src(['src/js/vendor/jquery-3.2.1.min.js','src/js/main.js'])
-        .pipe(concat('all-min.js', {newLine: ';'}))
-        .pipe(babel())
-        .pipe(babili({
-            mangle: {
-                keepClassNames: true
-            }
-        }))
-        .pipe(gulp.dest("dist/js"));
 });
 gulp.task("compile",['minify-css',"compile-js"]);

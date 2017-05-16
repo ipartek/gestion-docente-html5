@@ -1,4 +1,5 @@
 //codigo, nombre, apellidos, dni, email, telefono
+var $ = require('jquery');
 var alumnos = [
     {"codigo":1,"nombre":"sergio","apellidos":"aparicio vegas","dni":"44974398z","email":"xxxxx@xxx.xx","telefono":"+3494"},
     {"codigo":2,"nombre":"maite","apellidos":"monasterio herrero","dni":"16071559x","email":"xxxxx@xxx.xx","telefono":"+3494"},
@@ -6,7 +7,7 @@ var alumnos = [
     ];
 
 $.noConflict();
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
     // Code that uses jQuery's $ can follow here.
     $("#contactForm").on("submit",validarFormularioContacto);
     $("#listadoAlumnos div a:last-child").click(borrarVarios);
