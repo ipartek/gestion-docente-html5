@@ -1,5 +1,5 @@
 /**
- * Created by Urko on 10/05/2017.
+ * Created by Urko Villanueva on 10/05/2017.
  */
 const gulp = require('gulp');
 var babelify = require('babelify');
