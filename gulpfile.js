@@ -2,7 +2,7 @@
  * Created by Urko on 10/05/2017.
  */
 const gulp = require('gulp');
-const babel = require('gulp-babel');
+var babelify = require('babelify');
 var concat = require('gulp-concat');
 var cleanCSS = require('gulp-clean-css');
 var clean = require('gulp-clean');
@@ -13,11 +13,11 @@ var uglify = require('gulp-uglify');
 
 gulp.task('compile-js',['clean-js'],function() {
     return browserify('./src/js/main.js')
+        .transform(babelify)
         .bundle()
         .pipe(source('all-min.js'))
         .pipe(buffer())
         .pipe(uglify())
-        .pipe(babel({presets: ['env']}))
         .pipe(gulp.dest('./dist/js'));
 });
 gulp.task('clean-js', function () {
