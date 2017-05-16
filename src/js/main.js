@@ -1,11 +1,11 @@
-//codigo, nombre, apellidos, dni, email, telefono
 var $ = require('jquery');
+/*
 var alumnos = [
     {"codigo":1,"nombre":"sergio","apellidos":"aparicio vegas","dni":"44974398z","email":"xxxxx@xxx.xx","telefono":"+3494"},
     {"codigo":2,"nombre":"maite","apellidos":"monasterio herrero","dni":"16071559x","email":"xxxxx@xxx.xx","telefono":"+3494"},
     {"codigo":3,"nombre":"jorge","apellidos":"manso rodriguez","dni":"16412750e","email":"xxxxx@xxx.xx","telefono":"+3494"}
-    ];
-
+];
+*/
 $.noConflict();
 $(document).ready(function($) {
     // Code that uses jQuery's $ can follow here.
@@ -17,7 +17,7 @@ $(document).ready(function($) {
         var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
         //Llamar al REST para Borrar
         //
-       // alert(codigo);
+        // alert(codigo);
         //borra la tupla del boton que se ha seleccionado
         $(this).parents("tr").remove();
     });
@@ -73,7 +73,7 @@ $(document).ready(function($) {
         $("#apellidos").siblings("div.text-error").text("");
         $("#telefono").siblings("div.text-error").text("");
         if(dniValido&&nomValido&&apeValido&&teleValido){
-           // $("#contactForm").submit();//se envia el Formulario(Consumir REST)
+            // $("#contactForm").submit();//se envia el Formulario(Consumir REST)
             valido = true;
         }else {
             //mostar mensaje de error
@@ -93,8 +93,8 @@ $(document).ready(function($) {
         }
         return false;
     }
-    cargarArrayAlumnos();
-    function cargarArrayAlumnos() {
+   // cargarArrayAlumnos();
+    function cargarArrayAlumnos(alumnos) {
         //recorrer el array
         if (alumnos.length > 0) {
             for(var i = 0; i < alumnos.length; i++) {
@@ -121,8 +121,13 @@ $(document).ready(function($) {
     const urlAlumnos = "http://localhost:8080/gestiondocente/api/alumnos.json"
     ajax({"url":urlAlumnos,"method":"get"})
         .then(function (data) {
+            cargarArrayAlumnos(data);
             //aqui tengo los datos cargados (data)
-            console.log(data);
+            //console.log(data);
+           /* for(var i =  0; i < data.length; i ++){
+                  var alumno = data[i];
+
+            }*/
         })
         .then(function () {
             //poner mensaje los datos se han cargado correctamente
