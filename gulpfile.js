@@ -1,7 +1,7 @@
 /**
  * Created by Urko Villanueva on 10/05/2017.
  */
-const gulp = require('gulp');
+var gulp = require('gulp');
 var babelify = require('babelify');
 var concat = require('gulp-concat');
 var cleanCSS = require('gulp-clean-css');
@@ -13,7 +13,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('compile-js',['clean-js'],function() {
     return browserify('./src/js/main.js')
-        .transform(babelify)
+        .transform(babelify,{presets: ["env"]})
         .bundle()
         .pipe(source('all-min.js'))
         .pipe(buffer())
