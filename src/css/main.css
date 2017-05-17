@@ -152,6 +152,9 @@ main section div{
 #page-body {
     flex: 1;
 }
+footer a:link, footer a:visited {
+    color: #444;
+}
 section.flexcontainer{
     flex-direction: column;
 }
