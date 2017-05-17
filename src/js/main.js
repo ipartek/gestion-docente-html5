@@ -1,6 +1,7 @@
 //var modernizr = require("modernizr");
 import $ from "jquery";
 window.jQuery = window.$ = $;
+require("bootstrap");
 /*
 var alumnos = [
     {"codigo":1,"nombre":"sergio","apellidos":"aparicio vegas","dni":"44974398z","email":"xxxxx@xxx.xx","telefono":"+3494"},
