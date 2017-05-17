@@ -5,7 +5,7 @@
     <li>Consume Servicios web RestFul</li>
     <li>jQuery</li>
     <li>Gulp</li>
-    <li>Browserify</li> 
+    <li>Browserify</li>
     <li>Babel</li>
     <li>Bootstrap 3</li>
 </ul>
