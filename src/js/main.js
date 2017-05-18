@@ -4,17 +4,21 @@ window.jQuery = window.$ = $;
 import * as alumno from "./alumnos";
 require("bootstrap");
 
-
 var $listadoAlumnos =$("#listadoAlumnos");
 if($listadoAlumnos.length) {//estamos en la página de alumnos
-    var as = new alumno.AlumnoService();
-    as.getAll().then(function(data) {
+     var as = new alumno.AlumnoService();
+
+    as.getAll()
+        .then(function(data) {
        // console.log(data);
         cargarArrayAlumnos(JSON.parse(data));
     }, function(error) {//error
         console.log(error);
-    })
+    }).catch(function () {
+
+    });
 }
+
 $("#contactForm").on("submit",validarFormularioContacto);
 $("#listadoAlumnos div a:last-child").click(borrarVarios);
 
