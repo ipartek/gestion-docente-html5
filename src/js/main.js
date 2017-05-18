@@ -1,16 +1,20 @@
 //var modernizr = require("modernizr");
 import $ from "jquery";
 window.jQuery = window.$ = $;
+import * as alumno from "./alumnos";
 require("bootstrap");
-/*
-var alumnos = [
-    {"codigo":1,"nombre":"sergio","apellidos":"aparicio vegas","dni":"44974398z","email":"xxxxx@xxx.xx","telefono":"+3494"},
-    {"codigo":2,"nombre":"maite","apellidos":"monasterio herrero","dni":"16071559x","email":"xxxxx@xxx.xx","telefono":"+3494"},
-    {"codigo":3,"nombre":"jorge","apellidos":"manso rodriguez","dni":"16412750e","email":"xxxxx@xxx.xx","telefono":"+3494"}
-];
-*/
 
 
+var $listadoAlumnos =$("#listadoAlumnos");
+if($listadoAlumnos.length) {//estamos en la página de alumnos
+    var as = new alumno.AlumnoService();
+    as.getAll().then(function(data) {
+       // console.log(data);
+        cargarArrayAlumnos(JSON.parse(data));
+    }, function(error) {//error
+        console.log(error);
+    })
+}
 $("#contactForm").on("submit",validarFormularioContacto);
 $("#listadoAlumnos div a:last-child").click(borrarVarios);
 
@@ -54,9 +58,7 @@ function borrarVarios() {
 
 
     });
-    //actualizar el nº de alumnos
     $("tbody tr").length;
-
 }
 function validarFormularioContacto(){
     //recoger los valores de la vista
@@ -95,9 +97,10 @@ function validarFormularioContacto(){
     }
     return false;
 }
-// cargarArrayAlumnos();
+
 function cargarArrayAlumnos(alumnos) {
     //recorrer el array
+    console.log(alumnos.length );
     if (alumnos.length > 0) {
         for(var i = 0; i < alumnos.length; i++) {
             console.log(alumnos[i]);
@@ -112,36 +115,11 @@ function cargarArrayAlumnos(alumnos) {
             var texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+nombre+"</td><td>"+apellidos+"</td><td>"+dni+"</td><td>"+email+"</td><td>"+htmlEdit+htmlDelete+"</td></tr>";
             //añadir el html correspondiente a la página
             $("#tablaAlumnos tbody").append(texto);
-            //-->
         }
         $("#tablaAlumnos tfoot td").html("<span class='text-error'>Total alumnos:"+alumnos.length,10+"</span>");
     }else{
-        $("#tablaAlumnos").remove();
-        $("#listadoAlumnos").text("No se han encontrado alumnos")
+        $("#listadoAlumnos").append("No se han encontrado alumnos")
     }
-}
-const urlAlumnos = "http://localhost:8080/gestiondocente/api/alumnos"
-ajax({"url":urlAlumnos,"method":"get"})
-    .then(function (data) {
-        cargarArrayAlumnos(data);
-        //aqui tengo los datos cargados (data)
-        //console.log(data);
-       /* for(var i =  0; i < data.length; i ++){
-              var alumno = data[i];
-
-        }*/
-    })
-    .then(function () {
-        //poner mensaje los datos se han cargado correctamente
-    })
-    .catch(function (jqXHR, textStatus, errorThrown ) {
-        console.log(jqXHR);
-        //gestión de errores del primer metodo.
-    });
-function ajax(opciones) {
-    return new Promise(function (resolve, reject) {
-        $.ajax(opciones).done(resolve).fail(reject);
-    });
 }
 
 function validarNombre(nombre){

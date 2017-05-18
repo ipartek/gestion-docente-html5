@@ -11,11 +11,12 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 
+
 gulp.task('compile-js',['clean-js'],function() {
-    return browserify('./src/js/main.js')
-        .transform(babelify,{presets: ["env"]})
+    return browserify(['./src/js/main.js'])
+        .transform(babelify)
         .bundle()
-        .pipe(source('all-min.js'))
+        .pipe(source('all.min.js'))
         .pipe(buffer())
         .pipe(uglify())
         .pipe(gulp.dest('./dist/js'));
@@ -34,4 +35,8 @@ gulp.task('minify-css',['clean-css'], function() {
         .pipe(concat('styles-min.css'))
         .pipe(gulp.dest('dist/css'));
 });
-gulp.task("compile",['minify-css',"compile-js"]);
+
+gulp.task("default",['minify-css',"compile-js"]);
+gulp.watch('src/css/*.css', ['minify-css']);
+//gulp.watch('src/js/**/*.js', ['compile-js']);
+

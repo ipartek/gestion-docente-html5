@@ -20,7 +20,9 @@
     "browserify": "^14.3.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8",
     "jquery": "^3.2.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
