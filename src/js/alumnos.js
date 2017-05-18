@@ -8,6 +8,7 @@ export class AlumnoService extends service.GenericService {
     }
     getAll(){
         return super.ajax(urlAlumnos,"get",null);
+
     }
     getById(codigo){
         return super.ajax(urlAlumnos+"/"+codigo,"get",null);

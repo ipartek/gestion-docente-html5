@@ -17,6 +17,12 @@ if($listadoAlumnos.length) {//estamos en la página de alumnos
     }).catch(function () {
 
     });
+    
+    /*
+    var listaAlumnos = JSON.parse(as.getAll());
+    console.log("main.js"+listaAlumnos);
+    cargarArrayAlumnos(listaAlumnos);
+    */
 }
 
 $("#contactForm").on("submit",validarFormularioContacto);
