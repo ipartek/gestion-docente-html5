@@ -22,15 +22,16 @@ export  function rederizarFormulario(codigo = -1){
     let as = new AlumnoService();
     let alumno = new Alumno();
     let txt ="";
-    console.log(codigo);
+
     return new Promise(function(resolve, reject) {
-        if(codigo > -1){
+        if(codigo > -1 && codigo!=null){
             as.getById(codigo)
                 .then(function(alum){
-                    txt = parseForm(alum);
+                    txt = parseForm(JSON.parse(alum));
                     resolve(txt);
                 })
-                .catch(function () {
+                .catch(function (txt) {
+                    console.log(txt);
                     reject("No se han podido acceder a los datos del codigo "+codigo);
                 });
         }else{
@@ -43,10 +44,11 @@ export  function rederizarFormulario(codigo = -1){
     //rellaner datos en el form
 }
 function parseForm(alumno) {
+    console.log(alumno);
     let txt="";
     txt="<form action='#' id='alumnoForm' method='post'>";
-    txt = "<input type='text' name='nombre'"
-    +" id='nombre' value='"+alumno.nombre()+"'>"
+    txt += "<input type='text' name='nombre'"
+    +" id='nombre' value='"+alumno.nombre+"'>"
     txt+="</form>";
     return txt;
 }

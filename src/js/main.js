@@ -26,14 +26,14 @@ if($listadoAlumnos.length) {//estamos en la página de alumnos
 }
 if($alumno.length){
     let codigo = libreria.getURLParameter('codigo');
-    console.log(codigo);
+   // console.log(codigo);
     let p2 =alumno.rederizarFormulario(codigo);
 
     p2.then(function (html) {
-        console.log(html);
+        console.log("html"+html);
         $alumno.find("div.flexcontainer:last-child").append(html);
     }).catch(function (txt) {
-
+        console.log("html"+txt);
     });
 }
 if($listadoClientes.length) {
@@ -76,8 +76,8 @@ $pagebody.on("click","tbody td:last-child button:first-child",function(){//edita
 
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
     let nTable = $("table").attr("data-table");
-    //              http:----------------//--- localhost:63342/
-    let txt= window.location.protocol + '//' + window.location.host+"/gestiondocente/";
+    //              http:----------------//--- localhost:63342
+    let txt= window.location.protocol + '//' + window.location.host+"/gestion-docente/";
     switch (nTable){
         case 'alumnos':
             txt += "alumnos/alumno.html?codigo="+codigo;
