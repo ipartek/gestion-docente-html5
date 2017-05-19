@@ -13,12 +13,12 @@ var uglify = require('gulp-uglify');
 
 
 gulp.task('compile-js',['clean-js'],function() {
-    return browserify(['./src/js/main.js'])
+    return browserify('./src/js/main.js')
         .transform(babelify)
         .bundle()
         .pipe(source('all.min.js'))
         .pipe(buffer())
-        .pipe(uglify())
+      //  .pipe(uglify())
         .pipe(gulp.dest('./dist/js'));
 });
 gulp.task('clean-js', function () {

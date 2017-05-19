@@ -1,3 +1,4 @@
+"use strict";
 //module alumnos
 import * as service from "./genericservice";
 const urlAlumnos = "http://localhost:8080/gestiondocente/api/alumnos";
@@ -14,8 +15,82 @@ export class AlumnoService extends service.GenericService {
         return super.ajax(urlAlumnos+"/"+codigo,"get",null);
     }
 }
+export  function rederizarFormulario(codigo = -1){
+    let as = new AlumnoService();
+    let alumno = new Alumno();
+    let txt ="";
+    return new Promise(function(resolve, reject) {
+        if(codigo > -1){
+            as.getById(codigo)
+                .then(function(alum){
+                    txt = parseForm(alum);
+                    resolve(txt);
+                })
+                .catch(function () {
+                    reject("No se han podido acceder a los datos del codigo "+codigo);
+                });
+        }else{
+            txt = parseForm(alumno);
+            resolve(txt);
+        }
+    });
 
 
+    //rellaner datos en el form
+}
+function parseForm(alumno) {
+    let txt="";
+    txt="<form action='#' id='alumnoForm' method='post'>";
+    txt = "<input type='text' name='nombre'"
+    +" id='nombre' value='"+alumno.nombre()+"'>"
+    txt+="</form>";
+    return txt;
+}
+export function renderizar () {
+    let as = new AlumnoService();
+    let txt = "";
+    return new Promise(function(resolve, reject) {
+        as.getAll().then(function(data) {
+            let alumnos = JSON.parse(data);
+         //   console.log(alumnos);
+            if (alumnos.length > 0) {
+                txt ="<table id='tablaAlumnos' class='rwd-table'><thead><tr>"
+                    +"<th><input type='checkbox' name='borrartodos' id='borrartodos'/></th>"
+                    +"<th>Nombre</th>"
+                    +"<th>Apellidos</th>"
+                    +"<th>DNI</th>"
+                    +"<th>Email</th>"
+                    +"<th></th></tr></thead><tbody>";
+                for (let i = 0; i < alumnos.length; i++) {
+                    let alumno = alumnos[i];
+                    console.log(alumno);
+                    txt += parseAlumno(alumno);
+                }
+                txt+="</tbody><tfoot><tr><td colspan='6'>Total Alumnos: "+alumnos.length+"</td></tr></tfoot></table>";
+            }else{
+                txt ="no se encuentran alumnos en la BBDD";
+            }
+            resolve(txt)
+        }, function(error) {//error
+            console.log(error);
+            txt ="error en la carga de alumnos";
+            reject(txt);
+        });
+    });
+}
+function parseAlumno (alumno){
+    let codigo = alumno.codigo;
+    let nombre = alumno.nombre;
+    let apellidos = alumno.apellidos;
+    let email = alumno.email;
+    let dni = alumno.dni;
+    let htmlEdit ="<button>Editar</button>";
+    let htmlDelete ="<button>Borrar</button>";
+
+    let texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+nombre+"</td><td>"+apellidos+"</td><td>"+dni+"</td><td>"+email+"</td><td>"+htmlEdit+htmlDelete+"</td></tr>";
+
+     return texto;
+}
 
 export class Alumno {
     constructor(){
