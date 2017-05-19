@@ -49,7 +49,7 @@ function parseForm(alumno) {
     +" id='nombre' value='"+alumno.nombre+"'>"
     txt+="<div class='flexcontainer'><button>Enviar</button><button>Cancelar</button></div></form>";
     return txt;
-}
+} 
 export function renderizar () {
     let as = new AlumnoService();
     let txt = "";
