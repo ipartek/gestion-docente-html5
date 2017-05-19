@@ -47,7 +47,7 @@ function parseForm(alumno) {
     txt="<form action='#' id='alumnoForm' method='post'>";
     txt += "<input type='text' name='nombre'"
     +" id='nombre' value='"+alumno.nombre+"'>"
-    txt+="</form>";
+    txt+="<div class='flexcontainer'><button>Enviar</button><button>Cancelar</button></div></form>";
     return txt;
 }
 export function renderizar () {
