@@ -14,6 +14,9 @@ export class AlumnoService extends service.GenericService {
     getById(codigo){
         return super.ajax(urlAlumnos+"/"+codigo,"get",null);
     }
+    delete(codigo){
+        return super.ajax(urlAlumnos+"/"+codigo,"delete",null);
+    }
 }
 export  function rederizarFormulario(codigo = -1){
     let as = new AlumnoService();

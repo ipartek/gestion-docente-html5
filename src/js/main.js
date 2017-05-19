@@ -36,8 +36,6 @@ if($alumno.length){
 
     });
 }
-
-
 if($listadoClientes.length) {
     let p1 = cliente.renderizar();
     p1.then(function (txt) {
@@ -65,11 +63,27 @@ $pagebody.on("click","tbody td:last-child button:last-child",function(){
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
     $(this).parents("tr").remove();
     let nTable = $("table").attr("data-table");
+    let service;
+    switch (nTable){
+        case 'alumnos':
+            service = new alumnos.AlumnoService();
+            break;
+    }
+    service.delete(codigo);
 
 });
-$pagebody.on("click","tbody td:last-child button:first-child",function(){
+$pagebody.on("click","tbody td:last-child button:first-child",function(){//editar
+
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
-    //var nombre = $(this).parents("tr").find("td:nth-child(2)").text();
+    let nTable = $("table").attr("data-table");
+    //              http:----------------//--- localhost:63342/
+    let txt= window.location.protocol + '//' + window.location.host+"/gestiondocente/";
+    switch (nTable){
+        case 'alumnos':
+            txt += "alumnos/alumno.html?codigo="+codigo;
+            break;
+    }
+    window.location = txt;
 });
 $pagebody.on('click',"#borrartodos",function (event) {
     if($(this).is(":checked")){
