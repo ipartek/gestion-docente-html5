@@ -1,7 +1,7 @@
 /**
  * Created by va00 on 18/05/2017.
  */
-
+"use strict";
 export function validarNombre(nombre){
     const pattern = new RegExp(/[a-zA-Z]{3,}/);
     return pattern.test(nombre);

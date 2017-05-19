@@ -1,4 +1,4 @@
-//var modernizr = require("modernizr");
+"use strict";
 import $ from "jquery";
 window.jQuery = window.$ = $;
 require("bootstrap");
@@ -7,8 +7,11 @@ import * as validate from "./validate";
 import * as cliente from "./clientes";
 import * as cursos from "./cursos";
 import * as profesores from "./profesores";
+import * as libreria from "./libreria";
 
 var $listadoAlumnos =$("#listadoAlumnos");
+var $pagebody =$("#page-body");
+var $alumno =$("#alumno");
 var $listadoClientes =$("#listadoClientes");
 var $listadoCursos =$("#listadoCursos");
 var $listadoProfesores =$("#listadoProfesores");
@@ -18,12 +21,21 @@ if($listadoAlumnos.length) {//estamos en la página de alumnos
     p1.then(function (txt) {
         $listadoAlumnos.find("div.flexcontainer:last-child").append(txt);
     }).catch(function (txt) {
-        
+
     });
 }
+if($alumno.length){
+    let codigo = libreria.getURLParameter('codigo');
+    console.log(codigo);
+    let p2 =alumno.rederizarFormulario(codigo);
 
+    p2.then(function (html) {
+        console.log(html);
+        $alumno.find("div.flexcontainer:last-child").append(html);
+    }).catch(function (txt) {
 
-
+    });
+}
 
 
 if($listadoClientes.length) {
@@ -49,15 +61,17 @@ if($listadoProfesores.length) {
 }
 $contactForm.on("submit",validarFormularioContacto);
 $listadoAlumnos.find("div a:last-child").click(borrarVarios);
-$listadoAlumnos.find("#tablaAlumnos tbody").on("click","td:last-child button:last-child",function(){
+$pagebody.on("click","tbody td:last-child button:last-child",function(){
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
     $(this).parents("tr").remove();
+    let nTable = $("table").attr("data-table");
+
 });
-$listadoAlumnos.find("#tablaAlumnos tbody").on("click","td:last-child button:first-child",function(){
+$pagebody.on("click","tbody td:last-child button:first-child",function(){
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
-    var nombre = $(this).parents("tr").find("td:nth-child(2)").text();
+    //var nombre = $(this).parents("tr").find("td:nth-child(2)").text();
 });
-$("#borrartodos").click(function (event) {
+$pagebody.on('click',"#borrartodos",function (event) {
     if($(this).is(":checked")){
         $("tbody input[type=checkbox]").prop("checked",true);
     }else{

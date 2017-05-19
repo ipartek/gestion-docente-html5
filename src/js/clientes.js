@@ -1,4 +1,5 @@
 //module alumnos
+"use strict";
 import * as service from "./genericservice";
 const urlClientes = "http://localhost:8080/gestiondocente/api/clientes";
 

@@ -19,6 +19,7 @@ export  function rederizarFormulario(codigo = -1){
     let as = new AlumnoService();
     let alumno = new Alumno();
     let txt ="";
+    console.log(codigo);
     return new Promise(function(resolve, reject) {
         if(codigo > -1){
             as.getById(codigo)
@@ -54,7 +55,7 @@ export function renderizar () {
             let alumnos = JSON.parse(data);
          //   console.log(alumnos);
             if (alumnos.length > 0) {
-                txt ="<table id='tablaAlumnos' class='rwd-table'><thead><tr>"
+                txt ="<table data-table='alumnos' id='tablaAlumnos' class='rwd-table'><thead><tr>"
                     +"<th><input type='checkbox' name='borrartodos' id='borrartodos'/></th>"
                     +"<th>Nombre</th>"
                     +"<th>Apellidos</th>"

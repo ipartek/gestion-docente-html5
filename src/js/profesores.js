@@ -1,6 +1,7 @@
 /**
  * Created by va00 on 18/05/2017.
  */
+"use strict";
 import * as service from "./genericservice";
 const urlProfesores = "http://localhost:8080/gestiondocente/api/profesores";
 
