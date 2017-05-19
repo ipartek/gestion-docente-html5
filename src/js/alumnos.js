@@ -39,10 +39,8 @@ export  function rederizarFormulario(codigo = -1){
             resolve(txt);
         }
     });
-
-
-    //rellaner datos en el form
 }
+//rellaner datos en el form
 function parseForm(alumno) {
     console.log(alumno);
     let txt="";
