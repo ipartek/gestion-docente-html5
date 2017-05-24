@@ -16,6 +16,8 @@ var $listadoClientes =$("#listadoClientes");
 var $listadoCursos =$("#listadoCursos");
 var $listadoProfesores =$("#listadoProfesores");
 var $contactForm = $("#contactForm");
+var $guardarAlumno = $("#frmAlumno")
+
 if($listadoAlumnos.length) {//estamos en la página de alumnos
     let p1 = alumno.renderizar();
     p1.then(function (txt) {
@@ -24,6 +26,7 @@ if($listadoAlumnos.length) {//estamos en la página de alumnos
 
     });
 }
+
 if($alumno.length){
     let codigo = libreria.getURLParameter('codigo');
    // console.log(codigo);
@@ -36,6 +39,7 @@ if($alumno.length){
         console.log("html"+txt);
     });
 }
+
 if($listadoClientes.length) {
     let p1 = cliente.renderizar();
     p1.then(function (txt) {
@@ -43,6 +47,7 @@ if($listadoClientes.length) {
         $listadoClientes.find("div.flexcontainer:last-child").append(txt);
     });
 }
+
 if($listadoCursos.length) {
     let p1 = cursos.renderizar();
     p1.then(function (txt) {
@@ -50,6 +55,7 @@ if($listadoCursos.length) {
         $listadoCursos.find("div.flexcontainer:last-child").append(txt);
     });
 }
+
 if($listadoProfesores.length) {
     let p1 = profesores.renderizar();
     p1.then(function (txt) {
@@ -57,6 +63,7 @@ if($listadoProfesores.length) {
         $listadoProfesores.find("div.flexcontainer:last-child").append(txt);
     });
 }
+
 $contactForm.on("submit",validarFormularioContacto);
 $listadoAlumnos.find("div a:last-child").click(borrarVarios);
 $pagebody.on("click","tbody td:last-child button:last-child",function(){
@@ -72,6 +79,7 @@ $pagebody.on("click","tbody td:last-child button:last-child",function(){
     service.delete(codigo);
 
 });
+
 $pagebody.on("click","tbody td:last-child button:first-child",function(){//editar
 
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
@@ -85,6 +93,7 @@ $pagebody.on("click","tbody td:last-child button:first-child",function(){//edita
     }
     window.location = txt;
 });
+
 $pagebody.on('click',"#borrartodos",function (event) {
     if($(this).is(":checked")){
         $("tbody input[type=checkbox]").prop("checked",true);
@@ -92,6 +101,7 @@ $pagebody.on('click',"#borrartodos",function (event) {
         $("tbody input[type=checkbox]").prop("checked",false);
     }
 });
+
 function borrarVarios() {
     //recoger los checksboxes marcados
     $("table tbody input:checked").each(function () {
@@ -101,6 +111,7 @@ function borrarVarios() {
     });
     $("tbody tr").length;
 }
+
 function validarFormularioContacto(){
     //recoger los valores de la vista
     var pdni = $("#dni").val();

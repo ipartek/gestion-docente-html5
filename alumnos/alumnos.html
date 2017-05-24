@@ -70,7 +70,7 @@
             <section id="listadoAlumnos">
                 <header><h2>Listado de Alumnos</h2></header>
                 <div class="flexcontainer">
-                    <a title="Crear" href="#">Crear nuevo</a>
+                    <a title="Crear" href="#"  data-toggle="modal" data-target="#myModal">Crear nuevo</a>
                     <a title="Borrar" href="#">Borrar Varios</a>
                 </div>
                 <div class="flexcontainer">
@@ -85,6 +85,59 @@
         </footer>
     </div>
 </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Alta Usuario</h4>
+      </div>
+      <div class="modal-body">
+        <form id="frmAlumno">
+            <div class="form-group">
+                <label for="dni">DNI</label>
+                <input type="text" class="form-control" id="dni" placeholder="DNI">
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" placeholder="nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" placeholder="apellidos">
+            </div>
+            <div class="form-group">
+                <label for="fNac">Fecha Nacimiento</label>
+                <input type="text" class="form-control" id="fNac" placeholder="Fecha de Nacmiento">
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" id="direccion" placeholder="Dirección">
+            </div>
+            <div class="form-group">
+                <label for="poblacion">Población</label>
+                <input type="text" class="form-control" id="poblacion" placeholder="Población">
+            </div>
+            <div class="form-group">
+                <label for="cp">Código Postal</label>
+                <input type="number" class="form-control" id="cp" placeholder="Código Postal">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="number" class="form-control" id="telefono" placeholder="Teléfono">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+            </div>
+        </form>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script src="../dist/js/all.min.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@ gulp.task('clean-css', function () {
         .pipe(clean());
 });
 gulp.task('minify-css',['clean-css'], function() {
-    gulp.src(['src/css/normalize.css','src/css/main.css'])
+    gulp.src(['node_modules/bootstrap/dist/css/bootstrap.css','node_modules/bootstrap/dist/css/bootstrap-theme.css','src/css/normalize.css','src/css/main.css'])
         .pipe(cleanCSS())
         .pipe(concat('styles-min.css'))
         .pipe(gulp.dest('dist/css'));
