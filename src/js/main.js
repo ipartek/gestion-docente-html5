@@ -16,7 +16,8 @@ var $listadoClientes =$("#listadoClientes");
 var $listadoCursos =$("#listadoCursos");
 var $listadoProfesores =$("#listadoProfesores");
 var $contactForm = $("#contactForm");
-var $guardarAlumno = $("#frmAlumno")
+var $guardarAlumno = $("#frmAlumno");
+var $crearUsuario = $('#crearUsuario');
 
 if($listadoAlumnos.length) {//estamos en la página de alumnos
     let p1 = alumno.renderizar();
@@ -102,6 +103,20 @@ $pagebody.on('click',"#borrartodos",function (event) {
     }
 });
 
+$crearUsuario.on("click", function(){
+    var data = JSON.stringify($(frmAlumno).serializeObject());
+    alumno
+        .crearAlumno(data)
+        .then(function(numAlumno){
+            console.log(numAlumno);
+            $("#myModal").modal("hide");
+
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+});
+
 function borrarVarios() {
     //recoger los checksboxes marcados
     $("table tbody input:checked").each(function () {
@@ -149,5 +164,21 @@ function validarFormularioContacto(){
     }
     return false;
 }
+
+$.fn.serializeObject = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 
 

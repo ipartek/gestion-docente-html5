@@ -96,44 +96,48 @@
         <form id="frmAlumno">
             <div class="form-group">
                 <label for="dni">DNI</label>
-                <input type="text" class="form-control" id="dni" placeholder="DNI">
-            </div>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" placeholder="nombre">
-            </div>
-            <div class="form-group">
-                <label for="apellidos">Apellidos</label>
-                <input type="text" class="form-control" id="apellidos" placeholder="apellidos">
-            </div>
-            <div class="form-group">
-                <label for="fNac">Fecha Nacimiento</label>
-                <input type="text" class="form-control" id="fNac" placeholder="Fecha de Nacmiento">
-            </div>
-            <div class="form-group">
-                <label for="direccion">Dirección</label>
-                <input type="text" class="form-control" id="direccion" placeholder="Dirección">
-            </div>
-            <div class="form-group">
-                <label for="poblacion">Población</label>
-                <input type="text" class="form-control" id="poblacion" placeholder="Población">
-            </div>
-            <div class="form-group">
-                <label for="cp">Código Postal</label>
-                <input type="number" class="form-control" id="cp" placeholder="Código Postal">
-            </div>
-            <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="number" class="form-control" id="telefono" placeholder="Teléfono">
+                <input type="text" class="form-control" name="dni" id="dni" placeholder="DNI">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="nombre">
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="apellidos">
+            </div>
+            <div class="form-group">
+                <label for="fNacimiento">Fecha Nacimiento</label>
+                <input type="date" class="form-control" name="fNacimiento" id="fNacimiento" placeholder="Fecha de Nacmiento">
+            </div>
+            <div class="form-group">
+                <label for="nHermanos">Numero de Hermanos</label>
+                <input type="number" class="form-control" name="nHermanos" id="nHermanos" placeholder="Numero de Hermanos">
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección">
+            </div>
+            <div class="form-group">
+                <label for="poblacion">Población</label>
+                <input type="text" class="form-control" name="poblacion" id="poblacion" placeholder="Población">
+            </div>
+            <div class="form-group">
+                <label for="cp">Código Postal</label>
+                <input type="number" class="form-control" name="codigoPostal" id="cp" placeholder="Código Postal">
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="number" class="form-control" name="telefono" id="telefono" placeholder="Teléfono">
             </div>
         </form>        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-primary" id="crearUsuario">Guardar</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

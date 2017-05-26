@@ -7,15 +7,21 @@ export class AlumnoService extends service.GenericService {
     constructor(){
         super();
     }
-    getAll(){
-        return super.ajax(urlAlumnos,"get",null);
 
+    getAll(){
+        return super.ajax(urlAlumnos,"get",null,"text");
     }
+
     getById(codigo){
-        return super.ajax(urlAlumnos+"/"+codigo,"get",null);
+        return super.ajax(urlAlumnos+"/"+codigo,"get",null,"text");
     }
+
     delete(codigo){
-        return super.ajax(urlAlumnos+"/"+codigo,"delete",null);
+        return super.ajax(urlAlumnos+"/"+codigo,"delete",null,"text");
+    }
+
+    create(alumno){
+        return super.ajax(urlAlumnos,"post",alumno,"json");
     }
 }
 export  function rederizarFormulario(codigo = -1){
@@ -50,6 +56,21 @@ function parseForm(alumno) {
     txt+="<div class='flexcontainer'><button>Enviar</button><button>Cancelar</button></div></form>";
     return txt;
 } 
+
+export function crearAlumno(alumno){
+    let as = new AlumnoService();
+
+    return new Promise(function(resolve, reject){
+        as.create(alumno)
+            .then(function(numAlumno){
+                resolve(numAlumno);
+            })
+            .catch(function(msj){
+                reject(new Error(msj));
+            });
+    });
+}
+
 export function renderizar () {
     let as = new AlumnoService();
     let txt = "";
