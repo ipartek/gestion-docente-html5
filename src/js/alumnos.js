@@ -17,6 +17,7 @@ export class AlumnoService extends service.GenericService {
     }
 
     delete(codigo){
+        console.log(codigo);
         return super.ajax(urlAlumnos+"/"+codigo,"delete",null,"text");
     }
 
@@ -78,24 +79,41 @@ export function renderizar () {
         as.getAll().then(function(data) {
             let alumnos = JSON.parse(data);
          //   console.log(alumnos);
+            let $tabla;
             if (alumnos.length > 0) {
-                txt ="<table data-table='alumnos' id='tablaAlumnos' class='rwd-table'><thead><tr>"
-                    +"<th><input type='checkbox' name='borrartodos' id='borrartodos'/></th>"
-                    +"<th>Nombre</th>"
-                    +"<th>Apellidos</th>"
-                    +"<th>DNI</th>"
-                    +"<th>Email</th>"
-                    +"<th></th></tr></thead><tbody>";
+                $tabla = $("<table/>",{
+                    "data-table":'alumnos',
+                    id:'tablaAlumnos',
+                    class:'rwd-table'
+                });
+
+                let $thead = $("<thead/>");
+                let $filaCabecera = $("<tr/>");
+
+                let $colCabecera1 = $("<th/>").html("<input type='checkbox' name='borrartodos' id='borrartodos'/>");
+                let $colCabecera2 = $("<th/>").text("Nombre");
+                let $colCabecera3 = $("<th/>").text("Apellidos");
+                let $colCabecera4 = $("<th/>").text("DNI");
+                let $colCabecera5 = $("<th/>").text("");
+                let $colCabecera6 = $("<th/>").text("Email");
+
+                $filaCabecera.append($colCabecera1).append($colCabecera2).append($colCabecera3).append($colCabecera4).append($colCabecera4).append($colCabecera6);
+
+                let $tbody = $("<tbody/>");
+
                 for (let i = 0; i < alumnos.length; i++) {
                     let alumno = alumnos[i];
-                    console.log(alumno);
-                    txt += parseAlumno(alumno);
+                    $tbody.append(parseAlumno(alumno));
                 }
-                txt+="</tbody><tfoot><tr><td colspan='6'>Total Alumnos: "+alumnos.length+"</td></tr></tfoot></table>";
+
+                $tabla
+                    .append($thead.append($filaCabecera))
+                    .append($tbody);
+
             }else{
                 txt ="no se encuentran alumnos en la BBDD";
             }
-            resolve(txt)
+            resolve($tabla);
         }, function(error) {//error
             console.log(error);
             txt ="error en la carga de alumnos";
@@ -109,12 +127,52 @@ function parseAlumno (alumno){
     let apellidos = alumno.apellidos;
     let email = alumno.email;
     let dni = alumno.dni;
-    let htmlEdit ="<button>Editar</button>";
-    let htmlDelete ="<button>Borrar</button>";
+    /*let htmlEdit ="<button>Editar</button>";
+    let htmlDelete ="<button>Borrar</button>";*/
 
-    let texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+nombre+"</td><td>"+apellidos+"</td><td>"+dni+"</td><td>"+email+"</td><td>"+htmlEdit+htmlDelete+"</td></tr>";
+    let $fila = $("<tr>");
 
-     return texto;
+    let $divDropDown = $("<div/>", {
+        class : "btn-group"
+    });
+
+    $divDropDown
+        .append($("<button/>",{
+            type:"button",
+            class:"btn btn-info",
+            text: "Acciones"
+        }))
+        .append($("<button/>",{
+            type:"button",
+            class:"btn btn-info dropdown-toggle",
+            "data-toggle":"dropdown",
+            "aria-haspopup":"true",
+            "aria-expanded":"false",
+            html: "<span class='caret'></span><span class='sr-only'>Toggle Dropdown</span>"
+        }))
+        .append($("<ul/>",{
+            class:"dropdown-menu"
+        })
+            .append($("<li/>",{
+                html: "<a href='#'>Editar</a>"
+            }))
+            .append($("<li/>",{
+                html: "<a href='#'>Borrar</a>"
+            })))
+
+    let $col1 = $("<td>").append($("<input>",{type: 'checkbox',value: codigo}));
+    let $col2 = $("<td>").text(nombre);
+    let $col3 = $("<td>").text(apellidos);
+    let $col4 = $("<td>").text(dni);
+    let $col5 = $("<td>").text(email);
+    let $col6 = $("<td>").append($divDropDown);
+
+    $fila.append($col1).append($col2).append($col3).append($col4).append($col5).append($col6);
+
+    //let texto = "<tr><td><input type='checkbox' value='" + codigo + "'></td><td>"+nombre+"</td><td>"+apellidos+"</td><td>"+dni+"</td><td>"+email+"</td><td>"+htmlEdit+htmlDelete+"</td></tr>";
+    
+
+     return $fila;
 }
 
 export class Alumno {

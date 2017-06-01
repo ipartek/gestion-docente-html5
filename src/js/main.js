@@ -67,21 +67,21 @@ if($listadoProfesores.length) {
 
 $contactForm.on("submit",validarFormularioContacto);
 $listadoAlumnos.find("div a:last-child").click(borrarVarios);
-$pagebody.on("click","tbody td:last-child button:last-child",function(){
+$pagebody.on("click","tbody td:last-child li:last-child",function(){
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
     $(this).parents("tr").remove();
     let nTable = $("table").attr("data-table");
     let service;
     switch (nTable){
         case 'alumnos':
-            service = new alumnos.AlumnoService();
+            service = new alumno.AlumnoService();
             break;
     }
     service.delete(codigo);
 
 });
 
-$pagebody.on("click","tbody td:last-child button:first-child",function(){//editar
+$pagebody.on("click","tbody td:last-child li:first-child",function(){//editar
 
     var codigo = $(this).parents("tr").find("input[type=checkbox]").val();
     let nTable = $("table").attr("data-table");
@@ -110,7 +110,14 @@ $crearUsuario.on("click", function(){
         .then(function(numAlumno){
             console.log(numAlumno);
             $("#myModal").modal("hide");
+            let p1 = alumno.renderizar();
+            p1.then(function (txt) {
+                let $contenedorTabla = $listadoAlumnos.find("div.flexcontainer:last-child");
+                $contenedorTabla.empty();
+                $contenedorTabla.append(txt);
+            }).catch(function (txt) {
 
+            });
         })
         .catch(function(error){
             console.log(error);

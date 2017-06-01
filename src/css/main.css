@@ -409,7 +409,7 @@ h1 {
     background: #34495E;
     color: #fff;
     border-radius: .4em;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .rwd-table tr {
     border-color: #46637f;
