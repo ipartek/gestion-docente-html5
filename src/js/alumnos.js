@@ -106,9 +106,21 @@ export function renderizar () {
                     $tbody.append(parseAlumno(alumno));
                 }
 
+                //txt+="</tbody><tfoot><tr><td colspan='6'>Total Alumnos: "+alumnos.length+"</td></tr></tfoot></table>";
+
+                let $tfoot = $("<tfoot/>");
+
+                let $filaFooter = $("<tr/>")
+                                    .append($("<td/>",{
+                                        colspan: "6",
+                                        html:"Total Alumnos: " + alumnos.length
+                                    }));
+                $tfoot.append($filaFooter);
+
                 $tabla
                     .append($thead.append($filaCabecera))
-                    .append($tbody);
+                    .append($tbody)
+                    .append($tfoot);
 
             }else{
                 txt ="no se encuentran alumnos en la BBDD";
